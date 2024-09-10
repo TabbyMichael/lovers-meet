@@ -27,13 +27,13 @@ class LoversMeetApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false, // Disable the debug banner
       routes: {
-        '/': (context) => SplashScreen(),
-        '/welcome': (context) => WelcomeScreen(),
-        '/login': (context) => LoginScreen(),
-        '/signup': (context) => SignUpScreen(),
-        '/profileSetup': (context) => ProfileSetupScreen(),
+        '/': (context) => const SplashScreen(),
+        '/welcome': (context) => const WelcomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignUpScreen(),
+        '/profileSetup': (context) => const ProfileSetupScreen(),
         '/home': (context) => Matches(),
-        '/swipe': (context) => SwipeCardScreen(),
+        '/swipe': (context) => const SwipeCardScreen(),
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/detailed-about_Screen.dart';
 import 'package:lovers_meet/setting_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -39,7 +40,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsScreen()),
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
               );
             },
           ),
@@ -47,7 +48,11 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.info),
             title: const Text('About'),
             onTap: () {
-              // Handle About action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AboutSectionScreen()),
+              );
             },
           ),
           ListTile(

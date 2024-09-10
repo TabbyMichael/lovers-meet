@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io'; // For handling the file picked
 
-class ProfileSetupScreen extends StatelessWidget {
-  // Sample data for matches
-  final List<Map<String, String>> matches = [
-    {'name': 'Alice', 'image': 'assets/images/user1.jpg'},
-    {'name': 'Bob', 'image': 'assets/images/user2.jpg'},
-    {'name': 'Charlie', 'image': 'assets/images/user3.jpg'},
-    {'name': 'David', 'image': 'assets/images/user4.jpg'},
-    // Add more matches here
-  ];
+class ProfileSetupScreen extends StatefulWidget {
+  const ProfileSetupScreen({super.key});
 
-  // Sample data for additional pictures
-  final List<String> additionalPictures = [
-    'assets/handsome-man-with-white-teeth-smiling-wearing-glasses-grey-wall.jpg',
-    'assets/handsome-smiling-bald-middle-aged-man-with-beard-wearing-casual-white-t-shirt.jpg',
-    'assets/profile.jpg',
-    "assets/user.jpg",
+  @override
+  _ProfileSetupScreenState createState() => _ProfileSetupScreenState();
+}
 
-    // Add more pictures here if needed
-  ];
+class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
+  File? _image; // Store the picked image file
+  String username = 'User Name'; // Placeholder for the username
+  String bio = 'Love to travel and explore new places.'; // Placeholder for bio
 
-  ProfileSetupScreen({super.key});
+  final picker = ImagePicker();
+
+  // Function to pick an image from the gallery
+  Future<void> _pickImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+      // Here you would upload the file to Firebase or any other backend
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,75 +39,60 @@ class ProfileSetupScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage('assets/user.jpg'), // Placeholder image
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(10.0),
+              GestureDetector(
+                onTap: _pickImage, // Trigger the image picker
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: _image == null
+                      ? const AssetImage('assets/user.jpg') // Placeholder image
+                      : FileImage(_image!) as ImageProvider,
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
-                'User Name',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+
+              // Username field
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Username',
                 ),
+                controller: TextEditingController(text: username),
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
               ),
-              const Text(
-                'Age: 25',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              const Text(
-                'Gender: Female',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              const Text('Bio: Love to travel and explore new places.',
-                  style: TextStyle(fontSize: 18)),
               const SizedBox(height: 20),
+
+              // Bio field
+              TextField(
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: 'Bio',
+                ),
+                controller: TextEditingController(text: bio),
+                onChanged: (value) {
+                  setState(() {
+                    bio = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+
+              ElevatedButton(
+                onPressed: () {
+                  // Save the updated profile data to the backend (e.g., Firebase)
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: const Text('Save Changes'),
+              ),
+              const SizedBox(height: 20),
+
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/home');
                 },
                 child: const Text('View Matches'),
-              ),
-              const SizedBox(height: 20),
-              // Grid of matches (pictures only)
-
-              const SizedBox(height: 20),
-              // Grid of additional pictures (pictures only)
-              GridView.builder(
-                shrinkWrap: true,
-                physics:
-                    const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 columns for pictures
-                  crossAxisSpacing: 10.0, // Space between columns
-                  mainAxisSpacing: 10.0, // Space between rows
-                  childAspectRatio: 3 / 2, // Rectangular aspect ratio
-                ),
-                itemCount: additionalPictures.length,
-                itemBuilder: (context, index) {
-                  final picture = additionalPictures[index];
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Border radius
-                      image: DecorationImage(
-                        image: AssetImage(picture),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                },
               ),
             ],
           ),

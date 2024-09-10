@@ -10,8 +10,8 @@ class LocationTrackingScreen extends StatelessWidget {
         title: const Text('Location Tracking'),
         backgroundColor: Colors.pink,
       ),
-      body: Center(
-        child: const Text(
+      body: const Center(
+        child: Text(
             'Location Tracking Settings Here'), // Replace with actual settings
       ),
     );
