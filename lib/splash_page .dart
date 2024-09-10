@@ -10,10 +10,16 @@ class SplashScreen extends StatelessWidget {
     });
 
     return const Scaffold(
+      backgroundColor:
+          Color.fromARGB(255, 181, 49, 106), // Set background color to red
       body: Center(
-        child: Text(
-          'Welcome to Dating App',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        child: const Text(
+          ' lovers meet ',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Set text color to white
+          ),
         ),
       ),
     );

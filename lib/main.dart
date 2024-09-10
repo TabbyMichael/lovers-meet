@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/account_settings_screen.dart';
 import 'package:lovers_meet/login_page.dart';
 import 'package:lovers_meet/matches-screen.dart';
 import 'package:lovers_meet/PROFI/profile_setup_screen.dart';
@@ -34,6 +35,7 @@ class LoversMeetApp extends StatelessWidget {
         '/profileSetup': (context) => const ProfileSetupScreen(),
         '/home': (context) => Matches(),
         '/swipe': (context) => const SwipeCardScreen(),
+        '/account_settings': (context) => const AccountSettingsScreen(),
       },
     );
   }

@@ -26,7 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             leading: const Icon(Icons.account_circle),
             title: const Text('Account Settings'),
             onTap: () {
-              // Navigate to account settings screen
+              Navigator.pushReplacementNamed(context, '/account_settings');
             },
           ),
 

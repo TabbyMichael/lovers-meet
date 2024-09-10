@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AboutSectionScreen extends StatelessWidget {
+  const AboutSectionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class AboutSectionScreen extends StatelessWidget {
           children: [
             Text(
               'App Name',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -42,7 +44,7 @@ class AboutSectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              '1. Adrian Doe - Lead Developer\n2. Jane Smith - UI/UX Designer\n3. John Doe - Backend Developer',
+              '1. Tabitha Michael - Lead Developer\n2. Ian Kibugu - UI/UX Designer\n3.  Javi kamau - Backend Developer',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
@@ -68,7 +70,7 @@ class AboutSectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Email: support@appname.com\nPhone: +1 (234) 567-8901',
+              'Email: support@loversmeet.com\nPhone: +254(798041879)',
               style: TextStyle(fontSize: 16),
             ),
           ],
