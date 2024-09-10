@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DetailedAboutScreen extends StatelessWidget {
+  const DetailedAboutScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
