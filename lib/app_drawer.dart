@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/detailed-about_Screen.dart';
+import 'package:lovers_meet/about_section_screen.dart';
+import 'package:lovers_meet/detailed_about_screen.dart';
+import 'package:lovers_meet/ogout_screen.dart';
 import 'package:lovers_meet/setting_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -50,8 +52,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const AboutSectionScreen()),
+                MaterialPageRoute(builder: (context) => AboutSectionScreen()),
               );
             },
           ),
@@ -59,7 +60,18 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
             onTap: () {
-              // Handle Logout action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LogoutScreen(
+                    onLogout: () {
+                      // Handle the actual logout logic here
+                      // For example, clearing user session data
+                      print('User logged out');
+                    },
+                  ),
+                ),
+              );
             },
           ),
         ],
