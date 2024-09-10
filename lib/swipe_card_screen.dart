@@ -3,6 +3,8 @@ import 'package:tcard/tcard.dart';
 import 'app_drawer.dart'; // Import your drawer widget
 
 class SwipeCardScreen extends StatefulWidget {
+  const SwipeCardScreen({super.key});
+
   @override
   _SwipeCardScreenState createState() => _SwipeCardScreenState();
 }
