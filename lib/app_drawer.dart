@@ -28,6 +28,7 @@ class AppDrawer extends StatelessWidget {
               ],
             ),
           ),
+          // Home Tile
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
@@ -35,6 +36,25 @@ class AppDrawer extends StatelessWidget {
               Navigator.pushReplacementNamed(context, '/swipe');
             },
           ),
+          // Terms of Service Tile
+          ListTile(
+            leading: const Icon(Icons.article),
+            title: const Text('Terms of Service'),
+            onTap: () {
+              Navigator.pushNamed(
+                  context, '/terms'); // Navigate to Terms of Service page
+            },
+          ),
+          // Privacy Policy Tile
+          ListTile(
+            leading: const Icon(Icons.privacy_tip),
+            title: const Text('Privacy Policy'),
+            onTap: () {
+              Navigator.pushNamed(
+                  context, '/privacy'); // Navigate to Privacy Policy page
+            },
+          ),
+          // Settings Tile
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
@@ -45,6 +65,7 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
+          // About Tile
           ListTile(
             leading: const Icon(Icons.info),
             title: const Text('About'),
@@ -56,6 +77,7 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
+          // Logout Tile
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
@@ -65,8 +87,7 @@ class AppDrawer extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => LogoutScreen(
                     onLogout: () {
-                      // Handle the actual logout logic here
-                      // For example, clearing user session data
+                      // Handle logout logic here
                       print('User logged out');
                     },
                   ),
