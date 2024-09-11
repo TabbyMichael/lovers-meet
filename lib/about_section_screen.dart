@@ -14,6 +14,7 @@ class AboutSectionScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // App Name
             Text(
               'App Name',
               style: TextStyle(
@@ -22,11 +23,15 @@ class AboutSectionScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
+
+            // App Description
             Text(
               'This app is designed to provide a great user experience by allowing users to manage tasks, chat with friends, and access various services easily. It has been built with modern technologies to ensure security and reliability.',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
+
+            // Version Info
             Text(
               'Version: 1.0.0',
               style: TextStyle(
@@ -35,6 +40,8 @@ class AboutSectionScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+
+            // Developer Info
             Text(
               'Developers:',
               style: TextStyle(
@@ -44,10 +51,12 @@ class AboutSectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              '1. Tabitha Michael - Lead Developer\n2. Ian Kibugu - UI/UX Designer\n3.  Javi kamau - Backend Developer',
+              '1. Adrian Doe - Lead Developer\n2. Jane Smith - UI/UX Designer\n3. John Doe - Backend Developer',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
+
+            // Legal Information (Optional)
             Text(
               'Legal Information',
               style: TextStyle(
@@ -61,6 +70,8 @@ class AboutSectionScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
+
+            // Contact Information
             Text(
               'Contact Us:',
               style: TextStyle(
@@ -70,7 +81,7 @@ class AboutSectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Email: support@loversmeet.com\nPhone: +254(798041879)',
+              'Email: support@appname.com\nPhone: +1 (234) 567-8901',
               style: TextStyle(fontSize: 16),
             ),
           ],

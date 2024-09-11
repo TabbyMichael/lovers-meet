@@ -6,6 +6,7 @@ import 'package:lovers_meet/PROFI/profile_setup_screen.dart';
 import 'package:lovers_meet/signup_page.dart';
 import 'package:lovers_meet/splash_page%20.dart';
 import 'package:lovers_meet/swipe_card_screen.dart';
+import 'package:lovers_meet/terms_of_service_screen.dart';
 import 'package:lovers_meet/welcome_page.dart';
 import 'package:lovers_meet/app_drawer.dart';
 
@@ -35,6 +36,7 @@ class LoversMeetApp extends StatelessWidget {
         '/profileSetup': (context) => const ProfileSetupScreen(),
         '/home': (context) => Matches(),
         '/swipe': (context) => const SwipeCardScreen(),
+        '/terms': (context) => const TermsOfServiceScreen(),
         '/account_settings': (context) => const AccountSettingsScreen(),
       },
     );

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/about_section_screen.dart';
+import 'package:lovers_meet/ogout_screen.dart';
 import 'package:lovers_meet/privacy_screen.dart';
+import 'package:lovers_meet/terms_of_service_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -85,7 +88,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             leading: const Icon(Icons.info),
             title: const Text('About Us'),
             onTap: () {
-              // Show about us information
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AboutSectionScreen()),
+              );
             },
           ),
 
@@ -94,7 +101,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             leading: const Icon(Icons.description),
             title: const Text('Terms & Privacy Policy'),
             onTap: () {
-              // Navigate to terms and privacy policy
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const TermsOfServiceScreen()),
+              );
             },
           ),
 
@@ -103,7 +114,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
             onTap: () {
-              // Handle logout functionality
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LogoutScreen(
+                    onLogout: () {
+                      // Handle logout logic here
+                      print('User logged out');
+                    },
+                  ),
+                ),
+              );
             },
           ),
         ],
