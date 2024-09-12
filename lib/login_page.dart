@@ -46,7 +46,6 @@ class LoginScreen extends StatelessWidget {
                 // Handle login logic here
                 Navigator.pushNamed(context, '/home');
               },
-              child: const Text('Login'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.pink, // Button text color
@@ -57,6 +56,7 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 15.0, horizontal: 20.0),
               ),
+              child: const Text('Login'),
             ),
             const SizedBox(height: 20),
             // Navigate to Sign Up Page
@@ -64,10 +64,10 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/signup');
               },
-              child: const Text('Don\'t have an account? Sign Up'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.pink, // Text color
               ),
+              child: const Text('Don\'t have an account? Sign Up'),
             ),
           ],
         ),

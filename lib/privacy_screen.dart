@@ -146,10 +146,10 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                           // Handle actual account deletion here
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Delete'),
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.red,
                         ),
+                        child: const Text('Delete'),
                       ),
                     ],
                   );
