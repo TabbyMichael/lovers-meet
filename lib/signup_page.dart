@@ -59,7 +59,6 @@ class SignUpScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/swipe');
               },
-              child: const Text('Sign Up'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.pink, // Button text color
@@ -70,6 +69,7 @@ class SignUpScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 15.0, horizontal: 20.0),
               ),
+              child: const Text('Sign Up'),
             ),
           ],
         ),

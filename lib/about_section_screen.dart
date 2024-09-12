@@ -51,7 +51,7 @@ class AboutSectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              '1. Adrian Doe - Lead Developer\n2. Jane Smith - UI/UX Designer\n3. John Doe - Backend Developer',
+              '1. Tabitha michael - Lead Developer\n2. Ian kamau - UI/UX Designer\n3. Theo javi - Backend Developer',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),

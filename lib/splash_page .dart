@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor:
           Color.fromARGB(255, 181, 49, 106), // Set background color to red
       body: Center(
-        child: const Text(
+        child: Text(
           ' lovers meet ',
           style: TextStyle(
             fontSize: 24,
