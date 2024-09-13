@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lovers_meet/about_section_screen.dart';
 import 'package:lovers_meet/ogout_screen.dart';
 import 'package:lovers_meet/setting_screen.dart';
+import 'package:lovers_meet/login_page.dart'; // Import the login page
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -52,6 +53,14 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(
                   context, '/privacy'); // Navigate to Privacy Policy page
+            },
+          ),
+          // Login Tile
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text('Login'),
+            onTap: () {
+              Navigator.pushNamed(context, '/login'); // Navigate to Login page
             },
           ),
           // Settings Tile
