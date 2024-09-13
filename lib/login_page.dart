@@ -44,7 +44,8 @@ class LoginScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Handle login logic here
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(
+                    context, '/swipe'); // Navigate to SwipeCardScreen
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,

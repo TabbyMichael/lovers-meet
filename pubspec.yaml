@@ -40,6 +40,9 @@ dependencies:
   tcard: ^1.3.5
 image_picker: ^1.1.2 
 flutter_localization: ^0.2.2 
+provider: ^6.1.2
+http: ^1.2.2
+
 
 
 dev_dependencies:

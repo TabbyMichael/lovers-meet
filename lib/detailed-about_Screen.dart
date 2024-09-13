@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'detailed_about_screen.dart'; // Import the Detailed About screen
 

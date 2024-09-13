@@ -21,15 +21,6 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   // Method to pick an image from the gallery
 
   // Method to take a photo with the camera
-  Future<void> _takePhoto() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
-
-    if (pickedFile != null) {
-      setState(() {
-        _profileImage = File(pickedFile.path);
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
