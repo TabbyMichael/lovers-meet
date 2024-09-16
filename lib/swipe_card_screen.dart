@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lovers_meet/api%20.dart';
 import 'package:tcard/tcard.dart';
 import 'api_service.dart'; // Ensure your RandomUserService is implemented correctly
+import 'app_drawer.dart'; // Import your AppDrawer here
 
 class SwipeCardScreen extends StatefulWidget {
-  const SwipeCardScreen({Key? key}) : super(key: key);
+  const SwipeCardScreen({super.key});
 
   @override
   _SwipeCardScreenState createState() => _SwipeCardScreenState();
@@ -33,7 +34,7 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
 
     try {
       // Fetch random users with a count of 10
-      final randomUsers = await userService.fetchRandomUsers(count: 10);
+      final randomUsers = await userService.fetchRandomUsers(count: 1000);
 
       setState(() {
         // Mapping the fetched user data to a format we can use in the UI
@@ -65,11 +66,19 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
       appBar: AppBar(
         title: const Text('Swipe Your Matches'),
         backgroundColor: Colors.pink,
+        leading: IconButton(
+          icon: const Icon(Icons.menu), // Burger menu icon
+          onPressed: () {
+            Navigator.pushNamed(context, '/app_drawer');
+          },
+        ),
       ),
+      drawer: const AppDrawer(), // Adding the drawer here
       body: _isLoading
           ? const Center(
               child:
-                  CircularProgressIndicator()) // Show loading indicator while fetching data
+                  CircularProgressIndicator(), // Show loading indicator while fetching data
+            )
           : _hasError
               ? const Center(
                   child: Text(
