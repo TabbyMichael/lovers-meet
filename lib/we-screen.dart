@@ -6,14 +6,15 @@ class MatchesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userService = RandomUserService();
+    final userService = PexelsImageService();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Matches'),
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: userService.fetchUsers(),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: userService.fetchImages(
+            count: 10, query: ''), // Ensure this method exists
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -30,10 +31,9 @@ class MatchesScreen extends StatelessWidget {
               final user = users[index];
               return ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(user['picture']['large']),
+                  backgroundImage: NetworkImage(user['src']),
                 ),
-                title: Text('${user['name']['first']} ${user['name']['last']}'),
-                subtitle: Text(user['email']),
+                title: Text(user['photographer']),
               );
             },
           );

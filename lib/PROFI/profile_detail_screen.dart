@@ -1,39 +1,107 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class ProfileDetailScreen extends StatelessWidget {
+class ProfileDetailScreen extends StatefulWidget {
   final String name;
   final String image;
+  final String userId; // Pass userId to update profile
 
-  const ProfileDetailScreen(
-      {super.key, required this.name, required this.image});
+  const ProfileDetailScreen({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.userId,
+  });
+
+  @override
+  _ProfileDetailScreenState createState() => _ProfileDetailScreenState();
+}
+
+class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
+  final _nameController = TextEditingController();
+  final _imageController = TextEditingController();
+  bool _loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.text = widget.name;
+    _imageController.text = widget.image;
+  }
+
+  Future<void> _updateProfile() async {
+    setState(() {
+      _loading = true;
+    });
+
+    final name = _nameController.text.trim();
+    final image = _imageController.text.trim();
+
+    try {
+      final response = await http.put(
+        Uri.parse('https://api.pixel.com/users/${widget.userId}'),
+        headers: {
+          'Authorization':
+              'Bearer Dye0BwW0bQoVH2XNAydM6blZ38TydAb3oBclBCKO734fzXCTf8lcsOTh', // Replace with your actual API key
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'name': name,
+          'image': image,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Profile updated successfully')),
+        );
+        Navigator.of(context).pop();
+      } else {
+        throw Exception('Failed to update profile');
+      }
+    } catch (e) {
+      // Handle error
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to update profile')),
+      );
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: const Text('Edit Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage(image),
+              backgroundImage: NetworkImage(
+                  _imageController.text), // Use NetworkImage for online images
               radius: 80,
             ),
             const SizedBox(height: 20),
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+            TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(labelText: 'Name'),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'More information about the match can go here!',
-              style: TextStyle(fontSize: 18),
-              textAlign: TextAlign.center,
+            TextFormField(
+              controller: _imageController,
+              decoration: const InputDecoration(labelText: 'Profile Image URL'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _loading ? null : _updateProfile,
+              child: Text(_loading ? 'Updating...' : 'Update Profile'),
             ),
           ],
         ),
