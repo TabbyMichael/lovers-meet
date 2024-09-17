@@ -1,8 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/api%20.dart';
+import 'package:lovers_meet/bottom_navigationbar.dart';
 import 'package:tcard/tcard.dart';
-import 'app_drawer.dart'; // Import your AppDrawer here
+import 'package:lovers_meet/api%20.dart';
+import 'package:lovers_meet/app_drawer.dart'; // Import your AppDrawer here
+import 'package:lovers_meet/likes_screen.dart';
+import 'package:lovers_meet/chat_screen.dart';
+import 'package:lovers_meet/account_settings_screen.dart';
 
 class SwipeCardScreen extends StatefulWidget {
   const SwipeCardScreen({super.key});
@@ -17,6 +20,15 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
   bool _isLoading = true;
   bool _hasError = false;
   final PexelsImageService _pexelsApiService = PexelsImageService();
+
+  int _currentIndex = 0; // Current index of the bottom navigation
+
+  final List<Widget> _screens = [
+    const SwipeCardScreen(),
+    const LikesScreen(),
+    const ChatScreen(),
+    const AccountSettingsScreen(),
+  ];
 
   @override
   void initState() {
@@ -56,6 +68,16 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
     }
   }
 
+  void _onBottomNavTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  void _onAddButtonPressed() {
+    // Handle the add button press here
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,101 +91,109 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
           },
         ),
       ),
-
       drawer: const AppDrawer(), // Adding the drawer here
-      body: _isLoading
-          ? const Center(
-              child:
-                  CircularProgressIndicator(), // Show loading indicator while fetching data
-            )
-          : _hasError
+      body: _currentIndex == 0
+          ? _isLoading
               ? const Center(
-                  child: Text(
-                    'Error fetching matches. Please try again later.',
-                    style: TextStyle(fontSize: 18.0),
-                  ),
+                  child:
+                      CircularProgressIndicator(), // Show loading indicator while fetching data
                 )
-              : _matches.isNotEmpty
-                  ? Stack(
-                      children: [
-                        TCard(
-                          controller: _controller,
-                          size: Size(
-                            MediaQuery.of(context).size.width,
-                            MediaQuery.of(context).size.height * 0.75,
-                          ),
-                          cards: _matches.map((match) {
-                            return Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
+              : _hasError
+                  ? const Center(
+                      child: Text(
+                        'Error fetching matches. Please try again later.',
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                    )
+                  : _matches.isNotEmpty
+                      ? Stack(
+                          children: [
+                            TCard(
+                              controller: _controller,
+                              size: Size(
+                                MediaQuery.of(context).size.width,
+                                MediaQuery.of(context).size.height * 0.75,
                               ),
-                              elevation: 5.0,
-                              child: Stack(
-                                children: [
-                                  ClipRRect(
+                              cards: _matches.map((match) {
+                                return Card(
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    child: Image.network(
-                                      match['image'] as String,
-                                      fit: BoxFit.cover,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.network(
-                                          'https://via.placeholder.com/150',
+                                  ),
+                                  elevation: 5.0,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        child: Image.network(
+                                          match['image'] as String,
                                           fit: BoxFit.cover,
                                           width: double.infinity,
                                           height: double.infinity,
-                                        ); // Placeholder if image fails to load
-                                      },
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(20.0),
-                                        bottomRight: Radius.circular(20.0),
-                                      ),
-                                      child: Container(
-                                        color: Colors.black.withOpacity(0.5),
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Text(
-                                          match['name'] as String,
-                                          style: const TextStyle(
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.center,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Image.network(
+                                              'https://via.placeholder.com/150',
+                                              fit: BoxFit.cover,
+                                              width: double.infinity,
+                                              height: double.infinity,
+                                            ); // Placeholder if image fails to load
+                                          },
                                         ),
                                       ),
-                                    ),
+                                      Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
+                                          child: Container(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Text(
+                                              match['name'] as String,
+                                              style: const TextStyle(
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onForward: (index, info) {
-                            print('Swiped forward on card index: $index');
-                          },
-                          onBack: (index, info) {
-                            print('Swiped back on card index: $index');
-                          },
-                          onEnd: () {
-                            print('You have reached the end of the cards.');
-                          },
-                        ),
-                      ],
-                    )
-                  : const Center(
-                      child: Text(
-                        'No matches found. Please try again later.',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    ),
+                                );
+                              }).toList(),
+                              onForward: (index, info) {
+                                print('Swiped forward on card index: $index');
+                              },
+                              onBack: (index, info) {
+                                print('Swiped back on card index: $index');
+                              },
+                              onEnd: () {
+                                print('You have reached the end of the cards.');
+                              },
+                            ),
+                          ],
+                        )
+                      : const Center(
+                          child: Text(
+                            'No matches found. Please try again later.',
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                        )
+          : _screens[_currentIndex],
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _currentIndex,
+        onItemTapped: _onBottomNavTapped,
+        onAddButtonPressed: _onAddButtonPressed,
+      ),
     );
   }
 }
