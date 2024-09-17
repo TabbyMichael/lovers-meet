@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/PROFI/profile_setup_screen.dart';
 import 'package:lovers_meet/splash_page%20.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:lovers_meet/account_settings_screen.dart';
+
+// Import all the necessary screens and components
+
+import 'package:lovers_meet/welcome_page.dart';
 import 'package:lovers_meet/login_page.dart';
-import 'package:lovers_meet/PROFI/profile_setup_screen.dart';
-import 'package:lovers_meet/privacy_policy_screen.dart';
 import 'package:lovers_meet/signup_page.dart';
+import 'package:lovers_meet/privacy_policy_screen.dart';
 import 'package:lovers_meet/swipe_card_screen.dart';
 import 'package:lovers_meet/terms_of_service_screen.dart';
-import 'package:lovers_meet/welcome_page.dart';
+import 'package:lovers_meet/account_settings_screen.dart';
 import 'package:lovers_meet/app_drawer.dart';
+import 'package:lovers_meet/matches_screen.dart'; // Import MatchesScreen here
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,6 +54,8 @@ class LoversMeetApp extends StatelessWidget {
         '/app_drawer': (context) => const AppDrawer(),
         '/terms': (context) => const TermsOfServiceScreen(),
         '/account_settings': (context) => const AccountSettingsScreen(),
+        '/matches': (context) =>
+            const MatchesScreen(), // Added route for MatchesScreen
       },
     );
   }
