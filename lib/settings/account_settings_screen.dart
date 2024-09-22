@@ -1,10 +1,10 @@
 import 'dart:io'; // Import for handling files
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // Import for picking images
-import 'package:lovers_meet/Edit_Username_Screen.dart';
-import 'edit_email_screen.dart';
-import 'edit_password_screen.dart';
-import 'profile_picture_screen.dart'; // Import the profile picture screen
+import 'package:lovers_meet/auth/Edit_Username_Screen.dart';
+import '../auth/edit_email_screen.dart';
+import '../auth/edit_password_screen.dart';
+import '../profi/profile_picture_screen.dart'; // Import the profile picture screen
 
 class AccountSettingsScreen extends StatefulWidget {
   const AccountSettingsScreen({super.key});

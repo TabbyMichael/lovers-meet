@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/privacy_policy_screen.dart';
+import 'package:lovers_meet/settings/privacy_policy_screen.dart';
 
 class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({super.key});

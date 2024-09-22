@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/about_section_screen.dart';
-import 'package:lovers_meet/ogout_screen.dart';
-import 'package:lovers_meet/setting_screen.dart';
+import 'package:lovers_meet/settings/about_section_screen.dart';
+import 'package:lovers_meet/auth/ogout_screen.dart';
+import 'package:lovers_meet/settings/setting_screen.dart';
 // Import the login page
 
 class AppDrawer extends StatelessWidget {
