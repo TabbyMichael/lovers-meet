@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lovers_meet/about_section_screen.dart';
 import 'package:lovers_meet/ogout_screen.dart';
 import 'package:lovers_meet/setting_screen.dart';
-import 'package:lovers_meet/login_page.dart'; // Import the login page
+// Import the login page
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

@@ -42,14 +42,14 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             CircleAvatar(
               backgroundImage: NetworkImage(
                   'https://via.placeholder.com/150'), // Receiver's profile pic
             ),
-            const SizedBox(width: 10),
-            const Text('User Name'),
+            SizedBox(width: 10),
+            Text('User Name'),
           ],
         ),
         backgroundColor: Colors.pink,

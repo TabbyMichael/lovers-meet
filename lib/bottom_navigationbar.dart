@@ -32,7 +32,7 @@ class BottomNavBar extends StatelessWidget {
       case 3:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ChatScreen()),
+          MaterialPageRoute(builder: (context) => const ChatScreen()),
         );
         break;
       case 4:
