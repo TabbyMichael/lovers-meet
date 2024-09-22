@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "668613570248",
+    "project_id": "loversmeet-66e7e",
+    "storage_bucket": "loversmeet-66e7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668613570248:android:a5da36c7acce2fe9967ffd",
+        "android_client_info": {
+          "package_name": "com.example.lovers_meet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA22xDz5WyiY3bXK1ffoNKNyR8ke0m8AIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
