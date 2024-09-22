@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/about_section_screen.dart';
-import 'package:lovers_meet/ogout_screen.dart';
-import 'package:lovers_meet/privacy_screen.dart';
-import 'package:lovers_meet/terms_of_service_screen.dart';
+import 'package:lovers_meet/settings/about_section_screen.dart';
+import 'package:lovers_meet/auth/ogout_screen.dart';
+import 'package:lovers_meet/settings/privacy_screen.dart';
+import 'package:lovers_meet/settings/terms_of_service_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

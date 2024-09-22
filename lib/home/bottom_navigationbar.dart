@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/account_settings_screen.dart';
-import 'package:lovers_meet/chat_screen.dart';
-import 'package:lovers_meet/swipe_card_screen.dart';
+import 'package:lovers_meet/settings/account_settings_screen.dart';
+import 'package:lovers_meet/home/chat_screen.dart';
+import 'package:lovers_meet/home/swipe_card_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/bottom_navigationbar.dart';
+import 'package:lovers_meet/home/bottom_navigationbar.dart';
 import 'package:tcard/tcard.dart';
-import 'package:lovers_meet/api%20.dart';
-import 'package:lovers_meet/app_drawer.dart'; // Import your AppDrawer here
+import 'package:lovers_meet/API/api%20.dart';
+import 'package:lovers_meet/home/app_drawer.dart'; // Import your AppDrawer here
 import 'package:lovers_meet/likes_screen.dart';
-import 'package:lovers_meet/chat_screen.dart';
-import 'package:lovers_meet/account_settings_screen.dart';
+import 'package:lovers_meet/home/chat_screen.dart';
+import 'package:lovers_meet/settings/account_settings_screen.dart';
 
 class SwipeCardScreen extends StatefulWidget {
   const SwipeCardScreen({super.key});
