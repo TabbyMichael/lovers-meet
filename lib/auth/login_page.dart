@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState?.validate() == true) {
                     final authService = AuthService();
-                    final user = await authService.signInWithEmail(
+                    final user = await authService.signUpWithEmail(
                       emailController.text,
                       passwordController.text,
                     );

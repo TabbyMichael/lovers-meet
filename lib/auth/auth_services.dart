@@ -1,65 +1,42 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  // Email/Password Sign In
-  Future<User?> signInWithEmail(String email, String password) async {
+  // Sign in with a given credential
+  Future<User?> signInWithCredential(AuthCredential credential) async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return userCredential.user; // No change needed here
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      return userCredential.user;
     } catch (e) {
-      print('Error signing in with email: $e');
+      print('Error signing in with credential: $e');
       return null;
     }
   }
 
-  // Google Sign In
-  Future<User?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-
-      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth?.accessToken,
-          idToken: googleAuth?.idToken,
-        );
-
-        UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-        return userCredential.user; // No change needed here
-      }
-    } catch (e) {
-      print('Error signing in with Google: $e');
-    }
-    return null;
-  }
-
-  // In AuthService
+  // Sign up with email and password
   Future<User?> signUpWithEmail(String email, String password) async {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-        email: email.trim(),
+        email: email,
         password: password,
       );
       return userCredential.user;
     } catch (e) {
-      print('Error signing up with email: $e');
+      print('Error signing up: $e');
       return null;
     }
   }
 
-  // Sign Out
+  // Sign out from Firebase
   Future<void> signOut() async {
-    await _auth.signOut();
-    await _googleSignIn.signOut();
+    try {
+      await _auth.signOut();
+      print('Signed out from Firebase');
+    } catch (e) {
+      print('Error signing out: $e');
+    }
   }
 }

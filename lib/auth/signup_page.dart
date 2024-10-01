@@ -4,6 +4,7 @@ import 'package:lovers_meet/auth/auth_services.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
+  // Email validator
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -93,6 +94,7 @@ class SignUpScreen extends StatelessWidget {
                       passwordController.text,
                     );
                     if (user != null) {
+                      // Navigate to the swipe screen on successful sign-up
                       Navigator.pushNamed(context, '/swipe');
                     } else {
                       // Show an error message
