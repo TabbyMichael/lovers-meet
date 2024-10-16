@@ -14,6 +14,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
 
   final ImagePicker _picker = ImagePicker();
 
+  // Function to pick an image from the gallery
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
@@ -21,10 +22,10 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
       setState(() {
         _profileImage = File(pickedFile.path);
       });
-      Navigator.pop(context); // Return to previous screen
     }
   }
 
+  // Function to take a photo using the camera
   Future<void> _takePhoto() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
@@ -32,7 +33,6 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
       setState(() {
         _profileImage = File(pickedFile.path);
       });
-      Navigator.pop(context); // Return to previous screen
     }
   }
 
@@ -42,19 +42,51 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
       appBar: AppBar(
         title: const Text('Change Profile Picture'),
       ),
-      body: Column(
-        children: [
-          ListTile(
-            leading: const Icon(Icons.photo_library),
-            title: const Text('Select from Gallery'),
-            onTap: _pickImage,
-          ),
-          ListTile(
-            leading: const Icon(Icons.camera_alt),
-            title: const Text('Take a Photo'),
-            onTap: _takePhoto,
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Display the current profile picture or a placeholder
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: _profileImage != null
+                  ? FileImage(_profileImage!)
+                  : const NetworkImage(
+                      'https://via.placeholder.com/150'), // Placeholder or user's current profile pic URL
+            ),
+            const SizedBox(height: 16),
+            // Display user's name and email (or other info)
+            Text(
+              'User Name', // You can replace this with the actual user's name
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text(
+              'user@example.com', // Replace with actual user email
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 20),
+            // Options to select from gallery or take a photo
+            ElevatedButton.icon(
+              onPressed: _pickImage,
+              icon: const Icon(Icons.photo_library),
+              label: const Text('Select from Gallery'),
+            ),
+            ElevatedButton.icon(
+              onPressed: _takePhoto,
+              icon: const Icon(Icons.camera_alt),
+              label: const Text('Take a Photo'),
+            ),
+            const SizedBox(height: 20),
+            // Optional: Button to save or upload the new profile picture
+            ElevatedButton(
+              onPressed: () {
+                // Add logic to save the profile picture
+                // For example, upload to a server or save locally
+              },
+              child: const Text('Save Profile Picture'),
+            ),
+          ],
+        ),
       ),
     );
   }

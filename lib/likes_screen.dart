@@ -8,7 +8,7 @@ class LikesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Likes'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color.fromARGB(255, 246, 3, 132),
       ),
       body: const Center(
         child: Text(
