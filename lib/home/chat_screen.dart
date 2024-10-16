@@ -102,7 +102,8 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(
+                vertical: 20.0, horizontal: 10.0), // Adjust padding
             color: Colors.white,
             child: Row(
               children: [

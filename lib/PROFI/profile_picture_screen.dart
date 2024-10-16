@@ -1,4 +1,5 @@
-import 'dart:io';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,7 +11,7 @@ class ProfilePictureScreen extends StatefulWidget {
 }
 
 class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
-  File? _profileImage; // Variable to store the selected image
+// Variable to store the selected image
 
   final ImagePicker _picker = ImagePicker();
 
@@ -18,9 +19,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      setState(() {
-        _profileImage = File(pickedFile.path);
-      });
+      setState(() {});
       Navigator.pop(context); // Return to previous screen
     }
   }
@@ -29,9 +28,7 @@ class _ProfilePictureScreenState extends State<ProfilePictureScreen> {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      setState(() {
-        _profileImage = File(pickedFile.path);
-      });
+      setState(() {});
       Navigator.pop(context); // Return to previous screen
     }
   }

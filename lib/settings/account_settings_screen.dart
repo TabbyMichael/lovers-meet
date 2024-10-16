@@ -16,7 +16,7 @@ class AccountSettingsScreen extends StatefulWidget {
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   File? _profileImage; // Variable to store the selected image
-  final ImagePicker _picker = ImagePicker(); // Image picker instance
+// Image picker instance
 
   // Method to pick an image from the gallery
 
