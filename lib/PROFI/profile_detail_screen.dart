@@ -82,23 +82,40 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Profile Image
             CircleAvatar(
               backgroundImage: NetworkImage(
                   _imageController.text), // Use NetworkImage for online images
               radius: 80,
             ),
             const SizedBox(height: 20),
+
+            // User ID Display
+            Text(
+              'User ID: ${widget.userId}',
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 20),
+
+            // Name Input
             TextFormField(
               controller: _nameController,
               decoration: const InputDecoration(labelText: 'Name'),
             ),
             const SizedBox(height: 20),
+
+            // Profile Image URL Input
             TextFormField(
               controller: _imageController,
               decoration: const InputDecoration(labelText: 'Profile Image URL'),
             ),
             const SizedBox(height: 20),
+
+            // Update Profile Button
             ElevatedButton(
               onPressed: _loading ? null : _updateProfile,
               child: Text(_loading ? 'Updating...' : 'Update Profile'),
