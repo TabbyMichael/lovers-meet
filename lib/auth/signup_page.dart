@@ -19,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController confirmPasswordController =
@@ -32,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             children: <Widget>[
               // Email TextField with validation
@@ -86,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
               // Sign Up Button
               ElevatedButton(
                 onPressed: () async {
-                  if (_formKey.currentState?.validate() == true) {
+                  if (formKey.currentState?.validate() == true) {
                     final authService = AuthService();
                     final user = await authService.signUpWithEmail(
                       emailController.text,
@@ -97,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                     } else {
                       // Show an error message
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Sign Up failed')),
+                        const SnackBar(content: Text('Sign Up failed')),
                       );
                     }
                   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lovers_meet/settings/account_settings_screen.dart';
+import 'package:lovers_meet/auth/Edit_Username_Screen.dart';
 import 'package:lovers_meet/home/chat_screen.dart';
+import 'package:lovers_meet/likes_screen.dart';
+import 'package:lovers_meet/settings/account_settings_screen.dart';
 import 'package:lovers_meet/home/swipe_card_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -22,17 +24,29 @@ class BottomNavBar extends StatelessWidget {
           MaterialPageRoute(builder: (context) => const SwipeCardScreen()),
         );
         break;
-      case 3:
+      case 1: // Likes case
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LikesScreen()),
+        );
+        break;
+      case 2: // Inbox case
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const ChatScreen()),
         );
         break;
-      case 4:
+      case 3: // Profile case
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => const AccountSettingsScreen()),
+        );
+        break;
+      case 4: // Edit Username case
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const EditUsernameScreen()),
         );
         break;
     }
@@ -57,6 +71,10 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.edit), // Icon for editing username
+          label: 'Edit Username',
         ),
       ],
       currentIndex: selectedIndex,
