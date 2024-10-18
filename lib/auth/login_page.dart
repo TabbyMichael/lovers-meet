@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                       passwordController.text,
                     );
                     if (user != null) {
-                      Navigator.pushNamed(context, '/swipe');
+                      Navigator.pushNamed(context, '/interests');
                     } else {
                       // Show an error message
                       ScaffoldMessenger.of(context).showSnackBar(
