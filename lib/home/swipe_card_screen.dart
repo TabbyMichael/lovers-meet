@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/API/api%20.dart';
 import 'package:lovers_meet/home/bottom_navigationbar.dart';
 import 'package:tcard/tcard.dart';
-import 'package:lovers_meet/API/api%20.dart';
-import 'package:lovers_meet/home/app_drawer.dart'; // Import your AppDrawer here
+import 'package:lovers_meet/home/app_drawer.dart';
 import 'package:lovers_meet/likes_screen.dart';
 import 'package:lovers_meet/home/chat_screen.dart';
 import 'package:lovers_meet/settings/account_settings_screen.dart';
@@ -24,7 +24,6 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
   int _currentIndex = 0; // Current index of the bottom navigation
 
   final List<Widget> _screens = [
-    const SwipeCardScreen(),
     const LikesScreen(),
     const ChatScreen(),
     const AccountSettingsScreen(),
@@ -75,7 +74,9 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
   }
 
   void _onAddButtonPressed() {
-    // Handle the add button press here
+    // Handle the add button action here
+    print("Add button pressed");
+    // You can navigate to a new screen or show a dialog, etc.
   }
 
   @override
@@ -92,107 +93,103 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
         ),
       ),
       drawer: const AppDrawer(), // Adding the drawer here
-      body: _currentIndex == 0
-          ? _isLoading
+      body: _isLoading
+          ? const Center(
+              child:
+                  CircularProgressIndicator(), // Show loading indicator while fetching data
+            )
+          : _hasError
               ? const Center(
-                  child:
-                      CircularProgressIndicator(), // Show loading indicator while fetching data
+                  child: Text(
+                    'Error fetching matches. Please try again later.',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
                 )
-              : _hasError
-                  ? const Center(
-                      child: Text(
-                        'Error fetching matches. Please try again later.',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    )
-                  : _matches.isNotEmpty
-                      ? Stack(
-                          children: [
-                            TCard(
-                              controller: _controller,
-                              size: Size(
-                                MediaQuery.of(context).size.width,
-                                MediaQuery.of(context).size.height * 0.75,
+              : _matches.isNotEmpty
+                  ? Stack(
+                      children: [
+                        TCard(
+                          controller: _controller,
+                          size: Size(
+                            MediaQuery.of(context).size.width,
+                            MediaQuery.of(context).size.height * 0.75,
+                          ),
+                          cards: _matches.map((match) {
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                              cards: _matches.map((match) {
-                                return Card(
-                                  shape: RoundedRectangleBorder(
+                              elevation: 5.0,
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
                                     borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  elevation: 5.0,
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                        child: Image.network(
-                                          match['image'] as String,
+                                    child: Image.network(
+                                      match['image'] as String,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.network(
+                                          'https://via.placeholder.com/150',
                                           fit: BoxFit.cover,
                                           width: double.infinity,
                                           height: double.infinity,
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            return Image.network(
-                                              'https://via.placeholder.com/150',
-                                              fit: BoxFit.cover,
-                                              width: double.infinity,
-                                              height: double.infinity,
-                                            ); // Placeholder if image fails to load
-                                          },
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(20.0),
-                                            bottomRight: Radius.circular(20.0),
-                                          ),
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Text(
-                                              match['name'] as String,
-                                              style: const TextStyle(
-                                                fontSize: 24.0,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                        ); // Placeholder if image fails to load
+                                      },
+                                    ),
                                   ),
-                                );
-                              }).toList(),
-                              onForward: (index, info) {
-                                print('Swiped forward on card index: $index');
-                              },
-                              onBack: (index, info) {
-                                print('Swiped back on card index: $index');
-                              },
-                              onEnd: () {
-                                print('You have reached the end of the cards.');
-                              },
-                            ),
-                          ],
-                        )
-                      : const Center(
-                          child: Text(
-                            'No matches found. Please try again later.',
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                        )
-          : _screens[_currentIndex],
+                                  Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(20.0),
+                                        bottomRight: Radius.circular(20.0),
+                                      ),
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.5),
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Text(
+                                          match['name'] as String,
+                                          style: const TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                          onForward: (index, info) {
+                            print('Swiped forward on card index: $index');
+                          },
+                          onBack: (index, info) {
+                            print('Swiped back on card index: $index');
+                          },
+                          onEnd: () {
+                            print('You have reached the end of the cards.');
+                          },
+                        ),
+                      ],
+                    )
+                  : const Center(
+                      child: Text(
+                        'No matches found. Please try again later.',
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                    ),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _currentIndex,
         onItemTapped: _onBottomNavTapped,
-        onAddButtonPressed: _onAddButtonPressed,
+        onAddButtonPressed: _onAddButtonPressed, // Pass the callback here
       ),
     );
   }

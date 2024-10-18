@@ -1,127 +1,74 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:lovers_meet/settings/account_settings_screen.dart';
+import 'package:lovers_meet/home/swipe_card_screen.dart';
 
-class ProfileDetailScreen extends StatefulWidget {
-  final String name;
-  final String image;
-  final String userId; // Pass userId to update profile
+class BottomNavBar extends StatelessWidget {
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
 
-  const ProfileDetailScreen({
+  const BottomNavBar({
     super.key,
-    required this.name,
-    required this.image,
-    required this.userId,
+    required this.selectedIndex,
+    required this.onItemTapped,
+    required void Function() onAddButtonPressed,
   });
 
-  @override
-  _ProfileDetailScreenState createState() => _ProfileDetailScreenState();
-}
-
-class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
-  final _nameController = TextEditingController();
-  final _imageController = TextEditingController();
-  bool _loading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _nameController.text = widget.name;
-    _imageController.text = widget.image;
-  }
-
-  Future<void> _updateProfile() async {
-    setState(() {
-      _loading = true;
-    });
-
-    final name = _nameController.text.trim();
-    final image = _imageController.text.trim();
-
-    try {
-      final response = await http.put(
-        Uri.parse('https://api.pixel.com/users/${widget.userId}'),
-        headers: {
-          'Authorization':
-              'Bearer Dye0BwW0bQoVH2XNAydM6blZ38TydAb3oBclBCKO734fzXCTf8lcsOTh', // Replace with your actual API key
-          'Content-Type': 'application/json',
-        },
-        body: json.encode({
-          'name': name,
-          'image': image,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Profile updated successfully')),
+  void _navigateToPage(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const SwipeCardScreen()),
         );
-        Navigator.of(context).pop();
-      } else {
-        throw Exception('Failed to update profile');
-      }
-    } catch (e) {
-      // Handle error
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to update profile')),
-      );
-    } finally {
-      setState(() {
-        _loading = false;
-      });
+        break;
+      case 3: // This is now the Profile case, instead of the chat
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const AccountSettingsScreen()),
+        );
+        break;
+      // Other cases can be added for other navigation items like 'Likes' or 'Inbox'
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Profile'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Profile Image
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                  _imageController.text), // Use NetworkImage for online images
-              radius: 80,
-            ),
-            const SizedBox(height: 20),
-
-            // User ID Display
-            Text(
-              'User ID: ${widget.userId}',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 20),
-
-            // Name Input
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Name'),
-            ),
-            const SizedBox(height: 20),
-
-            // Profile Image URL Input
-            TextFormField(
-              controller: _imageController,
-              decoration: const InputDecoration(labelText: 'Profile Image URL'),
-            ),
-            const SizedBox(height: 20),
-
-            // Update Profile Button
-            ElevatedButton(
-              onPressed: _loading ? null : _updateProfile,
-              child: Text(_loading ? 'Updating...' : 'Update Profile'),
-            ),
-          ],
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: 'Likes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.message_outlined),
+          label: 'Inbox',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Profile',
+        ),
+      ],
+      currentIndex: selectedIndex,
+      onTap: (index) {
+        onItemTapped(index);
+        _navigateToPage(index, context); // Navigate to the selected page
+      },
+      backgroundColor: const Color.fromRGBO(233, 30, 99, 1),
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
+      showUnselectedLabels: true,
+      showSelectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      selectedLabelStyle: const TextStyle(
+        fontSize: 14,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 12,
       ),
     );
   }

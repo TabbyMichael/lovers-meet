@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:lovers_meet/auth/auth_services.dart';
 
@@ -6,7 +8,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -17,7 +19,7 @@ class LoginScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             children: <Widget>[
               // Email TextField
@@ -58,7 +60,7 @@ class LoginScreen extends StatelessWidget {
               // Login Button
               ElevatedButton(
                 onPressed: () async {
-                  if (_formKey.currentState?.validate() == true) {
+                  if (formKey.currentState?.validate() == true) {
                     final authService = AuthService();
                     final user = await authService.signInWithEmail(
                       emailController.text,
@@ -69,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     } else {
                       // Show an error message
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Login failed')),
+                        const SnackBar(content: Text('Login failed')),
                       );
                     }
                   }

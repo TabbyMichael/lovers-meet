@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InterestsSelectionPage extends StatefulWidget {
-  const InterestsSelectionPage({Key? key}) : super(key: key);
+  const InterestsSelectionPage({super.key});
 
   @override
   _InterestsSelectionPageState createState() => _InterestsSelectionPageState();
@@ -29,7 +29,7 @@ class _InterestsSelectionPageState extends State<InterestsSelectionPage> {
   ];
 
   // Tracks selected interests
-  List<String> _selectedInterests = [];
+  final List<String> _selectedInterests = [];
 
   @override
   Widget build(BuildContext context) {
