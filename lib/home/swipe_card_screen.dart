@@ -46,16 +46,59 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
       final images =
           await _pexelsApiService.fetchImages(query: 'portrait', count: 100);
 
-      setState(() {
-        _matches = images.map((image) {
-          final imageUrl = image['src']['medium'] ??
-              'https://via.placeholder.com/150'; // Fallback image if URL is null
+      // Define separate lists of names for men and women
+      List<String> maleNames = [
+        "John",
+        "Michael",
+        "Ethan",
+        "George",
+        "David",
+        "James",
+        "Robert",
+        "Daniel",
+        "Matthew",
+        "Chris",
+      ];
 
-          return {
-            'name': 'User ${_matches.length + 1}', // Generate placeholder names
-            'image': imageUrl,
-          };
-        }).toList();
+      List<String> femaleNames = [
+        "Alice",
+        "Emma",
+        "Sophia",
+        "Olivia",
+        "Liam",
+        "Ava",
+        "Isabella",
+        "Mia",
+        "Charlotte",
+        "Amelia",
+      ];
+
+      setState(() {
+        _matches = images
+            .asMap()
+            .map((index, image) {
+              final imageUrl = image['src']['medium'] ??
+                  'https://via.placeholder.com/150'; // Fallback image if URL is null
+
+              // Use modulo to alternate between male and female names
+              String name;
+              num age = 20 + (index % 10); // Example: Ages from 20 to 29
+              if (index % 2 == 0) {
+                name =
+                    maleNames[index ~/ 2 % maleNames.length]; // Use male names
+              } else {
+                name = femaleNames[
+                    index ~/ 2 % femaleNames.length]; // Use female names
+              }
+
+              return MapEntry(index, {
+                'name': name, // Set name directly from the names list
+                'age': age, // Age stored separately
+                'image': imageUrl,
+              });
+            })
+            .values
+            .toList(); // Convert to list
         _isLoading = false;
       });
     } catch (e) {
@@ -153,7 +196,7 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
                                         color: Colors.black.withOpacity(0.5),
                                         padding: const EdgeInsets.all(16.0),
                                         child: Text(
-                                          match['name'] as String,
+                                          '${match['name']} (${match['age']})', // Display name and age
                                           style: const TextStyle(
                                             fontSize: 24.0,
                                             fontWeight: FontWeight.bold,
