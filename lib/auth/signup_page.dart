@@ -111,6 +111,38 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 child: const Text('Sign Up'),
               ),
+              const SizedBox(height: 20),
+              // Social Signup Icons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.phone, size: 32),
+                    onPressed: () {
+                      // Handle phone signup
+                      Navigator.pushNamed(context, '/phone_signup');
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.mail,
+                        size:
+                            32), // Google icon (you can use a proper icon here)
+                    onPressed: () {
+                      // Handle Google signup
+                      // Call your Google authentication method here
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.apple,
+                        size:
+                            32), // Apple icon (you can use a proper icon here)
+                    onPressed: () {
+                      // Handle Apple signup
+                      // Call your Apple authentication method here
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
         ),
