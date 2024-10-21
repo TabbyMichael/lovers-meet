@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:lovers_meet/auth/auth_services.dart';
 
@@ -84,6 +82,38 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text('Login'),
+              ),
+              const SizedBox(height: 20),
+              // Social Login Icons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.phone, size: 32),
+                    onPressed: () {
+                      // Handle phone login
+                      Navigator.pushNamed(context, '/phone_login');
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.mail,
+                        size:
+                            32), // Google icon (you can use a proper icon here)
+                    onPressed: () {
+                      // Handle Google login
+                      // Call your Google authentication method here
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.apple,
+                        size:
+                            32), // Apple icon (you can use a proper icon here)
+                    onPressed: () {
+                      // Handle Apple login
+                      // Call your Apple authentication method here
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               // Navigate to Sign Up Page
