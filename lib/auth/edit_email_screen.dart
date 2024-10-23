@@ -19,7 +19,6 @@ class _EditEmailScreenState extends State<EditEmailScreen> {
 
   void _saveEmail() {
     // Implement save functionality here
-    String newEmail = _emailController.text;
     // Update the email in your database or state management solution
     Navigator.pop(context);
   }

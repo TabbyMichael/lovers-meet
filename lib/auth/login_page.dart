@@ -65,9 +65,12 @@ class LoginScreen extends StatelessWidget {
                       passwordController.text,
                     );
                     if (user != null) {
-                      Navigator.pushNamed(context, '/interests');
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamed(context,
+                          '/interests'); // Redirect after login success
                     } else {
                       // Show an error message
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Login failed')),
                       );
@@ -92,25 +95,40 @@ class LoginScreen extends StatelessWidget {
                     icon: const Icon(Icons.phone, size: 32),
                     onPressed: () {
                       // Handle phone login
-                      Navigator.pushNamed(context, '/phone_login');
+                      Navigator.pushNamed(
+                          context, '/phone_login'); // Ensure route exists
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.mail,
                         size:
-                            32), // Google icon (you can use a proper icon here)
-                    onPressed: () {
-                      // Handle Google login
-                      // Call your Google authentication method here
+                            32), // Google icon (you can replace with proper icon)
+                    onPressed: () async {
+                      final authService = AuthService();
+                      final user = await authService
+                          .signInWithGoogle(); // Call Google sign-in method
+                      if (user != null) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushNamed(context, '/interests');
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Google sign-in failed')),
+                        );
+                      }
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.apple,
-                        size:
-                            32), // Apple icon (you can use a proper icon here)
+                        size: 32), // Apple icon (replace with proper icon)
                     onPressed: () {
-                      // Handle Apple login
-                      // Call your Apple authentication method here
+                      // Placeholder for Apple sign-in
+                      // You will need to implement Apple sign-in (e.g., using sign_in_with_apple package)
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Apple login not yet implemented')),
+                      );
                     },
                   ),
                 ],

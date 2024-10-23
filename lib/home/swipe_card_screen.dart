@@ -3,9 +3,6 @@ import 'package:lovers_meet/API/api%20.dart';
 import 'package:lovers_meet/home/bottom_navigationbar.dart';
 import 'package:tcard/tcard.dart';
 import 'package:lovers_meet/home/app_drawer.dart';
-import 'package:lovers_meet/likes_screen.dart';
-import 'package:lovers_meet/home/chat_screen.dart';
-import 'package:lovers_meet/settings/account_settings_screen.dart';
 
 class SwipeCardScreen extends StatefulWidget {
   const SwipeCardScreen({super.key});
@@ -22,12 +19,6 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
   final PexelsImageService _pexelsApiService = PexelsImageService();
 
   int _currentIndex = 0; // Current index of the bottom navigation
-
-  final List<Widget> _screens = [
-    const LikesScreen(),
-    const ChatScreen(),
-    const AccountSettingsScreen(),
-  ];
 
   @override
   void initState() {
