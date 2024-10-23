@@ -1,6 +1,6 @@
 import 'dart:io'; // Import for handling files
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // Import for picking images
+// Import for picking images
 import 'package:lovers_meet/auth/Edit_Username_Screen.dart';
 import '../auth/edit_email_screen.dart';
 import '../auth/edit_password_screen.dart';
@@ -16,7 +16,7 @@ class AccountSettingsScreen extends StatefulWidget {
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   File? _profileImage; // Variable to store the selected image
-  final ImagePicker _picker = ImagePicker(); // Image picker instance
+// Image picker instance
 
   // Method to pick an image from the gallery
 

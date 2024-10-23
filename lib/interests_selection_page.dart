@@ -4,6 +4,7 @@ class InterestsSelectionPage extends StatefulWidget {
   const InterestsSelectionPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InterestsSelectionPageState createState() => _InterestsSelectionPageState();
 }
 

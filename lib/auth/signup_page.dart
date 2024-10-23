@@ -93,9 +93,11 @@ class SignUpScreen extends StatelessWidget {
                       passwordController.text,
                     );
                     if (user != null) {
+                      // ignore: use_build_context_synchronously
                       Navigator.pushNamed(context, '/swipe');
                     } else {
                       // Show an error message
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Sign Up failed')),
                       );

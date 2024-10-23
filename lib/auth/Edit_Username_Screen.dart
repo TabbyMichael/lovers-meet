@@ -19,7 +19,6 @@ class _EditUsernameScreenState extends State<EditUsernameScreen> {
   }
 
   void _saveUsername() {
-    String newUsername = _usernameController.text;
     // TODO: Update the username in your database or state management solution
     Navigator.pop(context);
   }

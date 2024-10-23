@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/auth/phone_auth_screen.dart';
+import 'package:lovers_meet/auth/splash_page%20.dart';
 import 'package:lovers_meet/interests_selection_page.dart';
 import 'package:lovers_meet/profi/profile_setup_screen.dart';
-import 'package:lovers_meet/auth/splash_page%20.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 // Import all the necessary screens and components
-
 import 'package:lovers_meet/auth/welcome_page.dart';
 import 'package:lovers_meet/auth/login_page.dart';
 import 'package:lovers_meet/auth/signup_page.dart';
@@ -19,7 +19,8 @@ import 'package:lovers_meet/matches_screen.dart'; // Import MatchesScreen here
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize firebase
+
+  // Initialize Firebase
   await Firebase.initializeApp();
 
   // Initialize Supabase
@@ -47,7 +48,7 @@ class LoversMeetApp extends StatelessWidget {
       ),
       initialRoute: '/',
       debugShowCheckedModeBanner: false, // Disable the debug banner
-      routes: {
+      routes: <String, WidgetBuilder>{
         '/': (context) => const SplashScreen(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(),
@@ -61,6 +62,8 @@ class LoversMeetApp extends StatelessWidget {
         '/account_settings': (context) => const AccountSettingsScreen(),
         '/matches': (context) =>
             const MatchesScreen(), // Added route for MatchesScreen
+        '/phone_login': (context) =>
+            const PhoneAuthScreen(), // Added route for PhoneAuthScreen
       },
     );
   }
