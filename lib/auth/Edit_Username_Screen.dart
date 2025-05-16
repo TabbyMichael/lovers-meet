@@ -20,7 +20,7 @@ class _EditUsernameScreenState extends State<EditUsernameScreen> {
 
   void _saveUsername() {
     // TODO: Update the username in your database or state management solution
-    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/swipe');
   }
 
   @override

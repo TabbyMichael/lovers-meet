@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lovers_meet/auth/auth_services.dart';
 
 class InterestsSelectionPage extends StatefulWidget {
   const InterestsSelectionPage({super.key});
@@ -81,11 +82,14 @@ class _InterestsSelectionPageState extends State<InterestsSelectionPage> {
     );
   }
 
-  void _submitInterests(BuildContext context) {
+  void _submitInterests(BuildContext context) async {
     // Handle logic to save the selected interests
     // Here you can save them to your database or backend
 
-    // For now, we'll navigate to the SwipeCardScreen
+    // Mark interests as completed
+    await AuthService().setInterestsSelected();
+
+    // Navigate to SwipeCardScreen
     Navigator.pushReplacementNamed(context, '/swipe');
   }
 }

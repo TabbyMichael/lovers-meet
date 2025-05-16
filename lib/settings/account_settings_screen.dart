@@ -27,6 +27,12 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Account Settings'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/swipe');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

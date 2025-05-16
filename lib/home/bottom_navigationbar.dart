@@ -37,11 +37,17 @@ class BottomNavBar extends StatelessWidget {
         );
         break;
       case 3: // Profile case
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => const AccountSettingsScreen()),
-        );
+        ).then((_) {
+          // When back button is pressed, navigate to swipe screen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const SwipeCardScreen()),
+          );
+        });
         break;
       case 4: // Edit Username case
         Navigator.push(

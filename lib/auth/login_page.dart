@@ -66,8 +66,7 @@ class LoginScreen extends StatelessWidget {
                     );
                     if (user != null) {
                       // ignore: use_build_context_synchronously
-                      Navigator.pushNamed(context,
-                          '/interests'); // Redirect after login success
+                      Navigator.pushReplacementNamed(context, '/swipe');
                     } else {
                       // Show an error message
                       // ignore: use_build_context_synchronously
@@ -109,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                           .signInWithGoogle(); // Call Google sign-in method
                       if (user != null) {
                         // ignore: use_build_context_synchronously
-                        Navigator.pushNamed(context, '/interests');
+                        Navigator.pushReplacementNamed(context, '/swipe');
                       } else {
                         // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
