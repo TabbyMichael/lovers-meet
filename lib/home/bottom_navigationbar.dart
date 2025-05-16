@@ -27,7 +27,7 @@ class BottomNavBar extends StatelessWidget {
       case 1: // Likes case
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const LikesScreen()),
+          MaterialPageRoute(builder: (context) => LikesScreen()),
         );
         break;
       case 2: // Inbox case

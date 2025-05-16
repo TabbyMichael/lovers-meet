@@ -28,19 +28,40 @@ class _EditUsernameScreenState extends State<EditUsernameScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Username'),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _usernameController,
-              decoration: const InputDecoration(labelText: 'New Username'),
+              decoration: InputDecoration(
+                labelText: 'New Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 14.0,
+                ),
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: _saveUsername,
-              child: const Text('Save'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+              ),
+              child: const Text(
+                'Save Changes',
+                style: TextStyle(fontSize: 16.0),
+              ),
             ),
           ],
         ),
