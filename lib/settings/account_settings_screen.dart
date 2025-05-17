@@ -35,6 +35,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 246, 3, 132),
+        iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

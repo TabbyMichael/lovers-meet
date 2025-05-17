@@ -16,6 +16,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 246, 3, 132),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
