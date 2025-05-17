@@ -9,7 +9,15 @@ class LogoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Logout'),
+        title: const Text(
+          'Logout',
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 246, 3, 132),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

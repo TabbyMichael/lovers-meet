@@ -27,7 +27,15 @@ class _EditUsernameScreenState extends State<EditUsernameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Username'),
+        title: const Text(
+          'Edit Username',
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 246, 3, 132),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

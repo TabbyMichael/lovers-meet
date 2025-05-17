@@ -8,7 +8,7 @@ class ProfileVisibilityScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile Visibility'),
-        backgroundColor: Colors.pink,
+        backgroundColor: const Color.fromARGB(255, 246, 3, 132),
       ),
       // ignore: prefer_const_constructors
       body: Center(

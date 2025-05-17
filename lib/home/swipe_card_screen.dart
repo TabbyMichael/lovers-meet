@@ -117,8 +117,15 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Swipe Your Matches'),
-        backgroundColor: Colors.pink,
+        title: const Text(
+          'Swipe Your Matches',
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 246, 3, 132),
         leading: IconButton(
           icon: const Icon(Icons.menu), // Burger menu icon
           onPressed: () {

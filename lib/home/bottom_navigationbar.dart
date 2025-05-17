@@ -88,7 +88,7 @@ class BottomNavBar extends StatelessWidget {
         onItemTapped(index);
         _navigateToPage(index, context); // Navigate to the selected page
       },
-      backgroundColor: const Color.fromRGBO(233, 30, 99, 1),
+      backgroundColor: const Color.fromARGB(255, 246, 3, 132),
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white,
       showUnselectedLabels: true,
