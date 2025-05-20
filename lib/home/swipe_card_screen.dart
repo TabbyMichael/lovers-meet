@@ -157,15 +157,24 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
                             MediaQuery.of(context).size.height * 0.75,
                           ),
                           cards: _matches.map((match) {
-                            return Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
+                            return Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.2),
+                                    blurRadius: 10,
+                                    spreadRadius: 2,
+                                    offset: const Offset(0, 5),
+                                  )
+                                ],
                               ),
-                              elevation: 5.0,
                               child: Stack(
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                     child: Image.network(
                                       match['image'] as String,
                                       fit: BoxFit.cover,
@@ -173,12 +182,13 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
                                       height: double.infinity,
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Image.network(
-                                          'https://via.placeholder.com/150',
-                                          fit: BoxFit.cover,
-                                          width: double.infinity,
-                                          height: double.infinity,
-                                        ); // Placeholder if image fails to load
+                                        return Container(
+                                          color: Colors.grey[200],
+                                          child: const Center(
+                                            child: Icon(Icons.person,
+                                                size: 60, color: Colors.white),
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),
@@ -186,23 +196,36 @@ class _SwipeCardScreenState extends State<SwipeCardScreen> {
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(20.0),
-                                        bottomRight: Radius.circular(20.0),
-                                      ),
-                                      child: Container(
-                                        color: Colors.black.withOpacity(0.5),
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Text(
-                                          '${match['name']} (${match['age']})', // Display name and age
-                                          style: const TextStyle(
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.center,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(25.0),
+                                          bottomRight: Radius.circular(25.0),
                                         ),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter,
+                                          colors: [
+                                            Colors.black.withOpacity(0.8),
+                                            Colors.transparent,
+                                          ],
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${match['name']} (${match['age']})',
+                                            style: const TextStyle(
+                                              fontSize: 28.0,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
