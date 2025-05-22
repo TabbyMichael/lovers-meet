@@ -5,7 +5,7 @@ class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({super.key});
 
   @override
-  _PrivacyScreenState createState() => _PrivacyScreenState();
+  State<PrivacyScreen> createState() => _PrivacyScreenState();
 }
 
 class _PrivacyScreenState extends State<PrivacyScreen> {

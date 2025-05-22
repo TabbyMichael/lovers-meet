@@ -73,4 +73,19 @@ class AuthService {
     await _auth.signOut();
     await _googleSignIn.signOut();
   }
+
+  Future<User?> signInWithPhone(String verificationId, String smsCode) async {
+    try {
+      final AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: smsCode,
+      );
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      return userCredential.user;
+    } catch (e) {
+      print('Error signing in with phone: $e');
+      return null;
+    }
+  }
 }

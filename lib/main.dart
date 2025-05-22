@@ -62,8 +62,7 @@ class LoversMeetApp extends StatelessWidget {
         '/account_settings': (context) => const AccountSettingsScreen(),
         '/matches': (context) =>
             const MatchesScreen(), // Added route for MatchesScreen
-        '/phone_login': (context) =>
-            const PhoneAuthScreen(), // Added route for PhoneAuthScreen
+        '/phone_auth': (context) => const PhoneAuthScreen(),
       },
     );
   }

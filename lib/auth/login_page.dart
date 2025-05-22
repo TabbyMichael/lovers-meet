@@ -102,9 +102,7 @@ class LoginScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.phone, size: 32),
                     onPressed: () {
-                      // Handle phone login
-                      Navigator.pushNamed(
-                          context, '/phone_login'); // Ensure route exists
+                      Navigator.pushNamed(context, '/phone_auth');
                     },
                   ),
                   IconButton(
